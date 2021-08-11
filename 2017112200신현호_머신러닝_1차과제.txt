@@ -1,0 +1,103 @@
+#1
+Input_list = ['cabc', 'xyza', 'abbc', '13221','xyzk']
+k = 0;
+
+for i in Input_list:
+    if len(i)>=3 and i[0]!=i[-1]:
+        k+=1
+
+print("Input List: {0}".format(Input_list))
+print("Output:{0}".format(k))
+
+#2
+input_list = [[2,6],[1,2],[3,4],[5,3],[4,1]]
+output_list = []
+print("Input List:{0}".format(input_list))
+while input_list:
+    tmp = input_list[0]
+    for i in range(len(input_list)-1):
+        if input_list[i][1]>input_list[i+1][1]:
+            tmp = input_list[i]
+            input_list[i] = input_list[i+1]
+            input_list[i+1] = tmp
+        else:
+            tmp = input_list[i+1]
+    output_list.append(tmp)
+    input_list.remove(tmp)
+
+print("Output: {0}".format(output_list))
+
+
+#3
+import csv
+import pandas as pd
+import numpy as np
+import random
+
+#3-1
+df = pd.read_csv('C:\\신현호\\머신러닝\\dataset_1\\audiology.csv',header = None)
+a_list = df.values.tolist()
+
+print(a_list) 
+
+#3-2
+print("Number of columns: {0}".format(len(a_list[0]))) 
+print("Number of rows: {0}".format(len(a_list)))
+class_data = []
+for i in range(len(a_list)):
+    class_data.append(a_list[i][len(a_list[0])-1])
+
+class_df = pd.DataFrame(class_data)
+print("Number of classes: {0}".format(len(class_df.value_counts())))
+
+#3-3
+
+
+#3-4
+rand_data = []
+for i in a_list:
+    rand_data.append(i)
+random.shuffle(rand_data)
+print("Shuffled a_list: ")
+print(rand_data)
+
+#4
+#4-1
+def function_4_1(in_list):
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+   
+    
+    out_list = []
+    line = []
+    line_2 = []
+    for i in range(len(in_list)):
+        line.append(in_list[i][a-1])
+    out_list.append(line)
+
+    for j in range(len(in_list)):
+        line_2.append(in_list[j][b-1])
+    out_list.append(line_2)
+   
+
+    return out_list
+
+df = pd.read_csv('C:\\신현호\\머신러닝\\dataset_1\\audiology.csv',header = None)
+a_list = df.values.tolist()
+out_list_2 = []
+out_list_2 = function_4_1(a_list)
+print("Output for 4-1:{0}".format(out_list_2))
+
+#4-2
+print("\n")
+
+list_01 = out_list_2[0]
+list_02 = out_list_2[1]
+n_list = []
+n_list.append(list_01[::-1])
+n_list.append(list_02[::-1])
+print("Output for 4-2:{0}".format(n_list))
+
+
+
+
